@@ -19,10 +19,10 @@ class Post extends Model
     /**
      * Order posts by last updated at
      */
-     public function scopeLatestCreated($query)
-     {
+    public function scopeLatestCreated($query)
+    {
         return $query->orderBy('created_at', 'desc');
-     }
+    }
 
     /**
      * Runs when post is created
@@ -37,5 +37,4 @@ class Post extends Model
                 ->exists() ? $slug . '-' . uniqid() : $slug;
         });
     }
-
 }
