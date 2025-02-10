@@ -10,8 +10,7 @@ export default {
     extend: {},
   },
   plugins: [
-    require('@tailwindcss/forms'),
     require('preline/plugin'),
+    require('@tailwindcss/forms'),
   ],
 }
-
