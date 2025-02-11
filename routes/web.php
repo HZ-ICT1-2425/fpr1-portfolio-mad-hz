@@ -14,8 +14,6 @@ Route::get('/', HomeController::class)->name('home');
 
 Route::get('/profile', ProfileController::class)->name('profile');
 
-Route::get('/faqs', FaqController::class)->name('faqs.index');
-
 Route::get('/contact', ContactController::class)->name('contact');
 
 Route::get('/auth/login', LoginController::class)->name('auth.login');

@@ -29,7 +29,7 @@ class FaqController extends Controller implements HasMiddleware
      *
      * @return FaqView with the faqs
      */
-    public function __invoke()
+    public function index()
     {
         $faqs = Faq::paginate(10);
 
