@@ -8,6 +8,9 @@ use Symfony\Component\DomCrawler\Crawler;
 
 class PageTitleFetcher
 {
+    /**
+     * Fetch the title of an url
+     */
     public function fetch(string $url): string
     {
         try {
