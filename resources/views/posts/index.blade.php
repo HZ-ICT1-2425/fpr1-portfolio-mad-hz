@@ -7,15 +7,7 @@
     <div class="relative overflow-hidden">
         <div class="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 py-10">
             {{-- Header title --}}
-            <div class="max-w-2xl text-center mx-auto mb-10">
-                <h1
-                    class="block text-3xl font-bold text-gray-800 sm:text-4xl md:text-5xl bg-clip-text bg-gradient-to-tl from-blue-500 to-lime-400 text-transparent py-4">
-                    Insights
-                </h1>
-                <p class="mt-1 text-gray-600">
-                    A chronological journal about the HBO-ICT program.
-                </p>
-            </div>
+            <x-shared.header title="Insights" text="A chronological journal about the HBO-ICT program." />
 
             {{-- Create a post link --}}
             <div class="flex justify-between mb-2">

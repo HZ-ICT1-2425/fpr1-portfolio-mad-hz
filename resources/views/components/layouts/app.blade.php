@@ -14,7 +14,7 @@
     {{-- Navbar --}}
     <x-shared.navigation :items="[
         ['label' => 'Home', 'url' => route('home'), 'active' => 'home'],
-        ['label' => 'Dashboard', 'url' => '/dashboard', 'active' => 'dashboard'],
+        ['label' => 'Dashboard', 'url' => route('dashboard'), 'active' => 'dashboard'],
         ['label' => 'Profile', 'url' => route('profile'), 'active' => 'profile'],
         ['label' => 'FAQ', 'url' => route('faqs.index'), 'active' => 'faqs.index'],
         ['label' => 'Blog', 'url' => route('posts.index'), 'active' => 'posts.index'],

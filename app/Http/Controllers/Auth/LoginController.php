@@ -6,11 +6,23 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Responses\Auth\LoginResponse;
 use Illuminate\Http\Request;
+use Illuminate\Routing\Controllers\HasMiddleware;
 
-class LoginController extends Controller
+class LoginController extends Controller implements HasMiddleware
 {
     /**
+     * Guest middleware
+     */
+    public static function middleware(): array
+    {
+        return [
+            'guest',
+        ];
+    }
+
+    /**
      * Shows the login page view
+     *
      * @return LoginView
      */
     public function __invoke()
@@ -21,6 +33,8 @@ class LoginController extends Controller
     /**
      * Proccess the login request
      * Validates the inputs through LoginRequest
+     *
+     * @param LoginRequest $request
      * @return LoginResponse
      */
     public function store(LoginRequest $request)

@@ -7,12 +7,7 @@
     <div class="relative overflow-hidden">
         <div class="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 py-10">
             {{-- Header title --}}
-            <div class="max-w-2xl text-center mx-auto mb-10">
-                <h2
-                    class="font-medium text-black text-2xl sm:text-4xl bg-clip-text bg-gradient-to-tl from-blue-500 to-lime-400 text-transparent">
-                    Contact Me
-                </h2>
-            </div>
+            <x-shared.header title="Contact Me" text="Avaliable any time for your queries." />
 
             <div class="grid grid-cols-1 lg:grid-cols-2 lg:items-center gap-6 md:gap-8 lg:gap-12">
                 <div class="aspect-w-16 aspect-h-6 lg:aspect-h-14 overflow-hidden bg-gray-100 rounded-2xl">

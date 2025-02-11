@@ -8,6 +8,7 @@ class ProfileController extends Controller
 {
     /**
      * Shows the contact page
+     *
      * @return ProfileView
      */
     public function __invoke()

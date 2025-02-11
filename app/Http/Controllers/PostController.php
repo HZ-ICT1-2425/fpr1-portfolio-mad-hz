@@ -8,11 +8,24 @@ use App\Http\Responses\Post\PostDestroyResponse;
 use App\Http\Responses\Post\PostUpdateResponse;
 use App\Models\Post;
 use App\Services\PageTitleFetcher;
+use Illuminate\Routing\Controllers\HasMiddleware;
+use Illuminate\Routing\Controllers\Middleware;
 
-class PostController extends Controller
+class PostController extends Controller implements HasMiddleware
 {
     /**
+     * Auth middleware
+     */
+    public static function middleware(): array
+    {
+        return [
+            new Middleware('auth', except: ['index', 'show'])
+        ];
+    }
+
+    /**
      * Paginate posts, 10 per page
+     *
      * @return PostView with the posts
      */
     public function index()
@@ -25,6 +38,9 @@ class PostController extends Controller
     }
 
     /**
+     * Shows the post page
+     *
+     * @param Post $post
      * @return PostView with 1 post information
      */
     public function show(Post $post)
@@ -45,6 +61,9 @@ class PostController extends Controller
     /**
      * Handles creating the post
      * Validate it through PostRequest
+     *
+     * @param PostRequest $request
+     * @param PageTitleFetcher $titleFetcher
      * @return PostCreateResponse
      */
     public function store(PostRequest $request, PageTitleFetcher $titleFetcher)
@@ -66,6 +85,7 @@ class PostController extends Controller
     }
 
     /**
+     * @param Post $post
      * @return PostEditView with the post information in the inputs this time
      */
     public function edit(Post $post)
@@ -77,6 +97,10 @@ class PostController extends Controller
 
     /**
      * Updates the post details
+     *
+     * @param PostRequest $request
+     * @param Post $post
+     * @param PageTitleFetcher $titleFetcher
      * @return PostUpdateResponse
      */
     public function update(PostRequest $request, Post $post, PageTitleFetcher $titleFetcher)
@@ -99,6 +123,8 @@ class PostController extends Controller
 
     /**
      * Deletes the post
+     *
+     * @param Post $post
      * @return PostDestroyResponse
      */
     public function destroy(Post $post)

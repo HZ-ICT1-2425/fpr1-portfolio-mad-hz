@@ -7,15 +7,7 @@
     <div class="relative overflow-hidden">
         <div class="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8 py-10">
             <!-- Header content -->
-            <div class="max-w-2xl text-center mx-auto mb-10">
-                <h2
-                    class="block text-3xl font-bold text-gray-800 sm:text-4xl md:text-5xl bg-clip-text bg-gradient-to-tl from-blue-500 to-lime-400 text-transparent">
-                    Who Am
-                    I
-                </h2>
-                <p class="mt-3 text-lg text-gray-800">Once again, good morning to everyone except people who hate PHP.
-                </p>
-            </div>
+            <x-shared.header title="Who Am I" text="Once again, good morning to everyone except people who hate PHP." />
 
             <!-- Header HZ Video -->
             <div class="mt-10 relative max-w-5xl mx-auto">

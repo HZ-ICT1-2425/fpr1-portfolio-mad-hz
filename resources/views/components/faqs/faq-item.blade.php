@@ -34,7 +34,7 @@
                     @csrf
                     @method('DELETE')
 
-                    <button type="submit" class="text-lime-500 mr-2 hover:underline">Delete</button>
+                    <button type="submit" class="text-red-500 mr-2 hover:underline">Delete</button>
                 </form>
 
                 <a href="{{ route('faqs.edit', $faq) }}" class="text-blue-500 hover:underline">Edit Faq</a>

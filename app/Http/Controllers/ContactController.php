@@ -8,6 +8,7 @@ class ContactController extends Controller
 {
     /**
      * Shows the contact page
+     *
      * @return ContactView
      */
     public function __invoke()

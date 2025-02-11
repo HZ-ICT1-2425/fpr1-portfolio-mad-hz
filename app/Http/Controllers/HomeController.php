@@ -8,6 +8,7 @@ class HomeController extends Controller
 {
     /**
      * Show the home page
+     *
      * @return HomeView
      */
     public function __invoke()
