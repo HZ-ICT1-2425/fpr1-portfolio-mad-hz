@@ -13,7 +13,7 @@ Route::get('/', HomeController::class)->name('home');
 
 Route::get('/profile', ProfileController::class)->name('profile');
 
-Route::get('/faq', FaqController::class)->name('faq');
+Route::get('/faqs', FaqController::class)->name('faqs.index');
 
 Route::get('/contact', ContactController::class)->name('contact');
 
@@ -33,6 +33,14 @@ Route::middleware('auth')->group(function () {
     Route::put('/posts/{post:slug}', [PostController::class, 'update'])->name('posts.update');
 
     Route::delete('/posts/{post:slug}', [PostController::class, 'destroy'])->name('posts.destroy');
+
+    Route::get('/faqs/create', [FaqController::class, 'create'])->name('faqs.create');
+    Route::post('/faqs', [FaqController::class, 'store'])->name('faqs.store');
+
+    Route::get('/faqs/{faq}/edit', [FaqController::class, 'edit'])->name('faqs.edit');
+    Route::put('/faqs/{faq}', [FaqController::class, 'update'])->name('faqs.update');
+
+    Route::delete('/faqs/{faq}', [FaqController::class, 'destroy'])->name('faqs.destroy');
 
     Route::post('/auth/logout', LogoutController::class)->name('auth.logout');
 });

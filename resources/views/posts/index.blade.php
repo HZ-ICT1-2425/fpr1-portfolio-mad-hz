@@ -19,12 +19,9 @@
 
             {{-- Create a post link --}}
             <div class="flex justify-between mb-2">
-                <span>Showing {{ $posts->lastItem() }} out of {{ $posts->total() }} posts</span>
+                <span>Showing {{ $posts->lastItem() ?? 0 }} out of {{ $posts->total() }} posts</span>
                 @auth
-                    <a href="{{ route('posts.create') }}"
-                        class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 text-gray-500 hover:border-lime-600 hover:text-lime-600 focus:outline-none focus:border-lime-600 focus:text-lime-600 disabled:opacity-50 disabled:pointer-events-none">
-                        Create a post
-                    </a>
+                    <x-forms.create-link title="Create a post" link="{{ route('posts.create') }}" />
                 @endauth
             </div>
 

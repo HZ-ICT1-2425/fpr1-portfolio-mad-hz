@@ -7,6 +7,44 @@
                     <div
                         class="relative group-last:after:hidden after:absolute after:top-8 after:bottom-2 after:start-3 after:w-px after:-translate-x-[0.5px] after:bg-gray-200">
                         <div class="relative z-10 size-6 flex justify-center items-center">
+                            <img class="shrink-0 size-6 text-gray-600" src="{{ asset('assets/images/work/jumbo.png') }}"
+                                alt="Jumbo">
+                        </div>
+                    </div>
+
+                    <div class="grow pb-8 group-last:pb-0">
+                        <h3 class="mb-1 text-xs text-gray-600">
+                            2024 - Present
+                        </h3>
+
+                        <p class="font-semibold text-sm text-gray-800">
+                            Jumbo - AGF
+                        </p>
+
+                        <p class="mt-1 text-sm text-gray-600">
+                            Dominos is a fun place to work at, where I happened to improve my communication
+                            skills,
+                            and also my dutch language, I usually do the following tasks:
+                        </p>
+
+                        <ul class="list-disc ms-6 mt-3 space-y-1.5">
+                            <li class="ps-1 text-sm text-gray-600">
+                                Orgnise the AGF
+                            </li>
+                            <li class="ps-1 text-sm text-gray-600">
+                                Fill in products
+                            </li>
+                            <li class="ps-1 text-sm text-gray-600">
+                                Clean the machines
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="group relative flex gap-x-5">
+                    <div
+                        class="relative group-last:after:hidden after:absolute after:top-8 after:bottom-2 after:start-3 after:w-px after:-translate-x-[0.5px] after:bg-gray-200">
+                        <div class="relative z-10 size-6 flex justify-center items-center">
                             <img class="shrink-0 size-6 text-gray-600"
                                 src="{{ asset('assets/images/work/studentaanhuis.png') }}" alt="Studentaanhuis">
                         </div>
@@ -57,7 +95,7 @@
 
                     <div class="grow pb-8 group-last:pb-0">
                         <h3 class="mb-1 text-xs text-gray-600">
-                            2024 - Present
+                            2024 - 2025
                         </h3>
 
                         <p class="font-semibold text-sm text-gray-800">

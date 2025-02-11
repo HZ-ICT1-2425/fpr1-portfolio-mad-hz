@@ -13,7 +13,7 @@
 
         {{-- Post short body --}}
         <p class="mt-3 text-gray-800">
-            {{ substr($post->body, 0, 150) }}
+            {{ substr($post->body, 0, 150) }}...
         </p>
 
         <div class="flex justify-between">

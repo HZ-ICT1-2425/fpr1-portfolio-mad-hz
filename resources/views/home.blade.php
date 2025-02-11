@@ -25,7 +25,7 @@
                         </svg>
                     </a>
                     <a class="py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none"
-                        to="/contact">
+                        href="{{ route('contact') }}">
                         Contact me
                     </a>
                 </div>

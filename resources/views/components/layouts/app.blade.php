@@ -16,7 +16,7 @@
         ['label' => 'Home', 'url' => route('home'), 'active' => 'home'],
         ['label' => 'Dashboard', 'url' => '/dashboard', 'active' => 'dashboard'],
         ['label' => 'Profile', 'url' => route('profile'), 'active' => 'profile'],
-        ['label' => 'FAQ', 'url' => route('faq'), 'active' => 'faq'],
+        ['label' => 'FAQ', 'url' => route('faqs.index'), 'active' => 'faqs.index'],
         ['label' => 'Blog', 'url' => route('posts.index'), 'active' => 'posts.index'],
         ['label' => 'Contact', 'url' => route('contact'), 'active' => 'contact'],
     ]"></x-shared.navigation>
