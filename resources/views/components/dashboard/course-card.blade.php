@@ -1,6 +1,6 @@
 @props(['course' => $course, 'quarter' => $quarter])
 
-<div class="p-4 border border-gray-200 rounded-lg">
+<div class="p-4 border border-gray-200 rounded-lg course-card" data-ec="{{ $course->ec }}">
     <div class="flex items-center mb-4">
         <label class="relative inline-flex items-center cursor-pointer">
             <input type="checkbox" class="peer sr-only course-toggle" data-course-id="{{ $course->id }}"

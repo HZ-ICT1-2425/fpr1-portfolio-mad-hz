@@ -47,18 +47,24 @@
 
             {{-- Progress bar --}}
             <div class="mt-4">
-                <label for="progress-bar" class="block text-sm font-medium text-gray-700">Progress:</label>
                 <div class="relative pt-1">
-                    <div class="flex items-center justify-between">
-                        <span class="text-xs font-medium text-gray-600">0</span>
-                        <span class="text-xs font-medium text-gray-600">x / total credits</span>
-                        <span class="text-xs font-medium text-gray-600">60</span>
-                    </div>
-                    {{-- Add class and width --}}
-                    <div class="flex w-full h-4 bg-gray-200 rounded-full overflow-hidden mt-2">
-                        <div
-                            class="flex flex-col justify-center rounded-full transition duration-500 text-xs text-white text-center">
+                    <div class="flex items-center justify-between mb-2">
+                        <div>
+                            <span class="text-xs font-semibold inline-block text-gray-600">
+                                Earned Credits
+                            </span>
                         </div>
+                        <div class="text-right">
+                            <span class="text-xs font-semibold inline-block text-gray-600">
+                                {{ $totalEc }}/60 EC
+                            </span>
+                        </div>
+                    </div>
+                    <div class="flex w-full h-3 bg-gray-200 rounded-full overflow-hidden">
+                        <div id="progress-bar"
+                            class="flex flex-col justify-center bg-gradient-to-r from-blue-400 to-purple-500 transition-all duration-500 ease-out"
+                            role="progressbar" aria-valuenow="{{ $totalEc }}" aria-valuemin="0"
+                            aria-valuemax="60" style="width: {{ min(($totalEc / 60) * 100, 100) }}%"></div>
                     </div>
                 </div>
             </div>
@@ -70,6 +76,9 @@
         document.querySelectorAll('.course-toggle').forEach(checkbox => {
             checkbox.addEventListener('change', function() {
                 const url = this.dataset.url;
+
+                const isSelected = this.checked;
+                const ecValue = parseInt(this.closest('.course-card').dataset.ec);
 
                 fetch(url, {
                         method: 'POST',
@@ -84,6 +93,19 @@
                         if (!data.success) {
                             this.checked = !this.checked;
                         }
+
+                        // Update progress bar
+                        const progressBar = document.getElementById('progress-bar');
+                        const currentWidth = parseFloat(progressBar.style.width) || 0;
+                        const ecSpan = document.querySelector('[aria-valuenow]');
+
+                        // Update displayed EC value
+                        const newTotal = data.totalEc;
+                        ecSpan.textContent = `${newTotal}/60 EC`;
+                        ecSpan.setAttribute('aria-valuenow', newTotal);
+
+                        // Animate progress bar
+                        progressBar.style.width = `${Math.min((newTotal / 60) * 100, 100)}%`;
                     });
             });
         });
