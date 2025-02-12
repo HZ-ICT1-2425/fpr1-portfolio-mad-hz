@@ -11,9 +11,8 @@ This repository contains the following features
 * Customized `.gitignore` that ignores files and folders specific for our supported IDEs
 * Custom PHPCodeSniffer rules relevant for our Laravel based courses and exams. 
 * Custom GitHub workflow action based on PHPCodeSniffer.
-* Removed all references to Tailwind
-* Customizable Bulma integration
-* Font-awesome integration
+* Tailwindcss
+* Preline
 
 ## Usage
 
@@ -69,14 +68,12 @@ The simplest way that ensures all the files are as close to a fresh installation
 ## Authors
 
 * **Daan de Waard** - *Initial work* - [dwaard](https://github.com/dwaard)
+* **Mohamad Aldalati** - *Further work* - [mohamad](https://github.com/mad-hz)
 
 See also the list of [contributors](https://github.com/HZ-HBO-ICT/laravel-skeleton-app/graphs/contributors) who
 participated in this project.
 
 ## Acknowledgements
-
-The layout of this app is heavily inspired by the [Bulma clean theme](http://www.csrhymes.com/bulma-clean-theme/). We
-thank the author [C.S. Rhymes](https://www.csrhymes.com/) for this.
 
 The installation instructions in this file are based on [DevMarketers](https://devmarketer.io/learn/author/devmarketer/)
 outstanding article [How to Setup a Laravel Project You Cloned from Github.com](https://devmarketer.io/learn/setup-laravel-project-cloned-github-com/)
