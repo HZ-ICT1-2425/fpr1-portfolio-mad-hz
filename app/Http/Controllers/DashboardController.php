@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\SelectedCourse;
+use App\Models\Course;
 use Illuminate\Http\Request;
+use App\Models\SelectedCourse;
 use Illuminate\Support\Facades\Storage;
 
 class DashboardController extends Controller
@@ -15,11 +16,16 @@ class DashboardController extends Controller
      */
     public function __invoke()
     {
-        $json = Storage::disk('public')->get('courses.json');
-        $quarters = json_decode($json, true);
+        $courses = Course::get()->groupBy('quarter');
 
         return view('dashboard', [
-            'quarters' => $quarters,
+            'courses' => $courses,
         ]);
+    }
+
+    public function toggle(Course $course)
+    {
+        $course->update(['is_selected' => !$course->is_selected]);
+        return response()->json(['success' => true]);
     }
 }

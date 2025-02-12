@@ -22,6 +22,7 @@ Route::post('/auth/login', [LoginController::class, 'store'])->name('auth.login'
 Route::post('/auth/logout', LogoutController::class)->name('auth.logout');
 
 Route::get('/dashboard', DashboardController::class)->name('dashboard');
+Route::post('/dashboard/{course}/toggle', [DashboardController::class, 'toggle'])->name('dashboard.courses.toggle');
 
 Route::resources([
     'posts' => PostController::class,

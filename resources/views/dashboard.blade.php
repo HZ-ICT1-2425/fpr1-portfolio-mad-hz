@@ -6,9 +6,9 @@
 
             <div class="grid grid-cols-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
                 {{-- List of the courses --}}
-                @foreach ($quarters as $quarter)
-                    @foreach ($quarter['courses'] as $course)
-                        <x-dashboard.course-card :course="$course" :quarter="$quarter['number']" />
+                @foreach ($courses as $quarter => $quarterCourses)
+                    @foreach ($quarterCourses as $course)
+                        <x-dashboard.course-card :course="$course" :quarter="$quarter" />
                     @endforeach
                 @endforeach
             </div>
@@ -64,4 +64,28 @@
             </div>
         </div>
     </div>
+
+    {{-- Ajax request to save completed courses --}}
+    <script>
+        document.querySelectorAll('.course-toggle').forEach(checkbox => {
+            checkbox.addEventListener('change', function() {
+                const url = this.dataset.url;
+
+                fetch(url, {
+                        method: 'POST',
+                        headers: {
+                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]')
+                                .getAttribute('content'),
+                            'Content-Type': 'application/json',
+                        },
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (!data.success) {
+                            this.checked = !this.checked;
+                        }
+                    });
+            });
+        });
+    </script>
 </x-layouts.app>
