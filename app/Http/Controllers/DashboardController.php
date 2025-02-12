@@ -23,9 +23,15 @@ class DashboardController extends Controller
         ]);
     }
 
+    /**
+     * Toggle between if the course is selected or not
+     *
+     * @return json
+     */
     public function toggle(Course $course)
     {
         $course->update(['is_selected' => !$course->is_selected]);
+
         return response()->json(['success' => true]);
     }
 }
