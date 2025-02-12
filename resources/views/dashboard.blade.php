@@ -14,60 +14,10 @@
             </div>
 
             {{-- NBSA Boundry Alert --}}
-            <div class="bg-blue-100 border border-blue-200 text-gray-800 rounded-lg p-4 mt-5 flex items-center"
-                role="alert" tabindex="-1" aria-labelledby="hs-actions-label">
-                <div class="flex">
-                    <div class="shrink-0">
-                        <svg class="shrink-0 size-4 mt-1" xmlns="http://www.w3.org/2000/svg" width="24"
-                            height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                            stroke-linecap="round" stroke-linejoin="round">
-                            <circle cx="12" cy="12" r="10"></circle>
-                            <path d="M12 16v-4"></path>
-                            <path d="M12 8h.01"></path>
-                        </svg>
-                    </div>
-                    <div class="ms-3">
-                        <h3 id="hs-actions-label" class="font-semibold">
-                            NBSA Boundary
-                        </h3>
-                        <div class="mt-2 text-sm text-gray-600">
-                            To be able to continue to the next year, you need at least 45 ECs.
-                        </div>
-                    </div>
-                </div>
-
-                {{-- HZ & Alert images --}}
-                <div class="ml-auto flex gap-3">
-                    <img src="{{ asset('assets/images/general/alert.png') }}" alt="Alert"
-                        class="w-10 h-10 rounded-lg">
-                    <img src="{{ asset('assets/images/general/hz-logo.png') }}" alt="HZ Logo"
-                        class="w-10 h-10 rounded-lg">
-                </div>
-            </div>
+            <x-dashboard.nbsa-boundry-alert />
 
             {{-- Progress bar --}}
-            <div class="mt-4">
-                <div class="relative pt-1">
-                    <div class="flex items-center justify-between mb-2">
-                        <div>
-                            <span class="text-xs font-semibold inline-block text-gray-600">
-                                Earned Credits
-                            </span>
-                        </div>
-                        <div class="text-right">
-                            <span class="text-xs font-semibold inline-block text-gray-600">
-                                {{ $totalEc }}/60 EC
-                            </span>
-                        </div>
-                    </div>
-                    <div class="flex w-full h-3 bg-gray-200 rounded-full overflow-hidden">
-                        <div id="progress-bar"
-                            class="flex flex-col justify-center bg-gradient-to-r from-blue-400 to-purple-500 transition-all duration-500 ease-out"
-                            role="progressbar" aria-valuenow="{{ $totalEc }}" aria-valuemin="0"
-                            aria-valuemax="60" style="width: {{ min(($totalEc / 60) * 100, 100) }}%"></div>
-                    </div>
-                </div>
-            </div>
+            <x-dashboard.progress-bar :totalEc="$totalEc" />
         </div>
     </div>
 
@@ -98,14 +48,23 @@
                         const progressBar = document.getElementById('progress-bar');
                         const currentWidth = parseFloat(progressBar.style.width) || 0;
                         const ecSpan = document.querySelector('[aria-valuenow]');
+                        const totalEc = document.getElementById('totalEc');
 
                         // Update displayed EC value
                         const newTotal = data.totalEc;
-                        ecSpan.textContent = `${newTotal}/60 EC`;
                         ecSpan.setAttribute('aria-valuenow', newTotal);
+                        totalEc.textContent = `${newTotal}/60 EC`
 
                         // Animate progress bar
                         progressBar.style.width = `${Math.min((newTotal / 60) * 100, 100)}%`;
+
+                        if (newTotal < 45) {
+                            progressBar.classList.remove('bg-green-500');
+                            progressBar.classList.add('bg-red-500');
+                        } else {
+                            progressBar.classList.remove('bg-red-500');
+                            progressBar.classList.add('bg-green-500');
+                        }
                     });
             });
         });
