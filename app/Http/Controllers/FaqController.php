@@ -2,15 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\FaqRequest;
-use App\Http\Responses\Faq\FaqCreateResponse;
-use App\Http\Responses\Faq\FaqDestroyResponse;
-use App\Http\Responses\Faq\FaqUpdateResponse;
 use App\Models\Faq;
-use App\Services\PageTitleFetcher;
 use Illuminate\Http\Request;
-use Illuminate\Routing\Controllers\HasMiddleware;
+use App\Http\Requests\FaqRequest;
+use App\Services\PageTitleFetcher;
+use Illuminate\Support\Facades\Validator;
+use App\Http\Responses\Faq\FaqCreateResponse;
+use App\Http\Responses\Faq\FaqUpdateResponse;
+use App\Http\Responses\Faq\FaqDestroyResponse;
 use Illuminate\Routing\Controllers\Middleware;
+use Illuminate\Routing\Controllers\HasMiddleware;
 
 class FaqController extends Controller implements HasMiddleware
 {
@@ -50,18 +51,20 @@ class FaqController extends Controller implements HasMiddleware
      * Handles creating the faq
      * Validate it through FaqRequest
      *
-     * @param FaqRequest $request
+     * @param Request $request
      * @param PageTitleFetcher $titleFetcher
      * @return FaqCreateResponse
      */
-    public function store(FaqRequest $request, PageTitleFetcher $titleFetcher)
+    public function store(Request $request, PageTitleFetcher $titleFetcher)
     {
+        $validatedData = $this->validateFaq($request);
+
         $sourceUrl = $request->source_url;
         $sourceTitle = $titleFetcher->fetch($sourceUrl);
 
         Faq::create([
-            'question' => $request->question,
-            'answer' => $request->answer,
+            'question' => $validatedData['question'],
+            'answer' => $validatedData['answer'],
             'source_url' => $sourceUrl,
             'source_title' => $sourceTitle,
         ]);
@@ -85,19 +88,21 @@ class FaqController extends Controller implements HasMiddleware
     /**
      * Updates the faq details
      *
-     * @param FaqRequest $request
+     * @param Request $request
      * @param Faq $faq
      * @param PageTitleFetcher $titleFetcher
      * @return FaqUpdateResponse
      */
-    public function update(FaqRequest $request, Faq $faq, PageTitleFetcher $titleFetcher)
+    public function update(Request $request, Faq $faq, PageTitleFetcher $titleFetcher)
     {
+        $validatedData = $this->validateFaq($request);
+
         $sourceUrl = $request->source_url;
         $sourceTitle = $titleFetcher->fetch($sourceUrl);
 
         Faq::where('id', $faq->id)->update([
-            'question' => $request->question,
-            'answer' => $request->answer,
+            'question' => $validatedData['question'],
+            'answer' => $validatedData['answer'],
             'source_url' => $sourceUrl,
             'source_title' => $sourceTitle,
         ]);
@@ -116,5 +121,18 @@ class FaqController extends Controller implements HasMiddleware
         $faq->delete();
 
         return new FaqDestroyResponse;
+    }
+
+    /**
+     * Custom handler to validate faq data without duplication
+     * @param Request $request
+     */
+    private function validateFaq(Request $request)
+    {
+        return Validator::make($request->only(['title', 'body', 'source_url', 'image_path']), [
+            'question' => 'required|max:255',
+            'answer' => 'required',
+            'source_url' => 'required|url|max:255',
+        ])->validate();
     }
 }

@@ -5,12 +5,18 @@
             <x-shared.header title="Dashboard" text="Let's dive more into the HBO ICT Program." />
 
             <div class="grid grid-cols-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
-                {{-- List of the courses --}}
-                @foreach ($courses as $quarter => $quarterCourses)
-                    @foreach ($quarterCourses as $course)
-                        <x-dashboard.course-card :course="$course" :quarter="$quarter" />
+                {{-- If there are no courses --}}
+                @if ($courses->count() <= 0)
+                    <div class="text-center font-medium text-xl mt-2">There are no courses/exams yet.</div>
+                @else
+                    {{-- List of the courses --}}
+                    @foreach ($courses as $quarter => $quarterCourses)
+                        @foreach ($quarterCourses as $course)
+                            <x-dashboard.course-card :course="$course" :quarter="$quarter" />
+                        @endforeach
                     @endforeach
-                @endforeach
+                @endif
+
             </div>
 
             {{-- NBSA Boundry Alert --}}
