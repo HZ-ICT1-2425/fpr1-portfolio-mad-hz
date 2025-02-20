@@ -29,7 +29,8 @@ class FaqSeeder extends Seeder
                 'source_title' => '',
             ],
             [
-                'question' => 'How can I buy something (like when I sign up for the IT introduction event) on the HZ web shop?',
+                'question' => 'How can I buy something (like when I sign up for the IT introduction event)
+                 on the HZ web shop?',
                 'answer' => 'On the webshop, you can register for events or buy materials.
                 Add them to the cart, pay, and wait for a confirmation.',
                 'source_url' => 'https://webshop.hz.nl/',
@@ -37,14 +38,16 @@ class FaqSeeder extends Seeder
             ],
             [
                 'question' => 'How can you book a project space?',
-                'answer' => 'You could easily reserve a place through the self-service portal on the HZ website.',
+                'answer' => 'You could easily reserve a place through the self-service portal
+                on the HZ website.',
                 'source_url' => 'https://portal.hz.nl/',
                 'source_title' => 'HZ Portal',
             ],
             [
                 'question' => 'What are the instructions if you want to park your car at the HZ parking lot?',
                 'answer' => 'Parking at HZ is limited. Students and staff can use the Kousteensedijk car park,
-                which is an 8-minute walk from the HZ. Show your entry card at the JRCZ service desk for an exit card.',
+                which is an 8-minute walk from the HZ. Show your entry card at the JRCZ service desk
+                for an exit card.',
                 'source_url' => '',
                 'source_title' => '',
             ],
