@@ -35,8 +35,8 @@ class Post extends Model
      */
     protected static function booted()
     {
-        static::creating(function ($discussion) {
-            $discussion->slug = Post::where('slug', $slug = Str::slug($discussion->title))
+        static::creating(function ($post) {
+            $post->slug = Post::where('slug', $slug = Str::slug($post->title))
                 ->exists() ? $slug . '-' . uniqid() : $slug;
         });
     }

@@ -5,7 +5,7 @@
 
     <div class="relative">
         <textarea id="{{ $name }}" name="{{ $name }}"
-            class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-lime-500 focus:ring-lime-500 disabled:opacity-50 disabled:pointer-events-none"
+            class="py-3 px-4 block w-full border-gray-200 rounded-lg text-sm focus:border-lime-500 focus:ring-lime-500 disabled:opacity-50 disabled:pointer-events-none @error("$name") border-red-500 @enderror"
             aria-describedby="{{ $name }}-error" rows="4" placeholder="{{ $placeholder }}">{{ $value }}</textarea>
 
         @error("$name")

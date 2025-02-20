@@ -4,9 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
-use App\Http\Requests\PostRequest;
 use App\Services\PageTitleFetcher;
-use Illuminate\Support\Facades\Validator;
 use Illuminate\Routing\Controllers\Middleware;
 use App\Http\Responses\Post\PostCreateResponse;
 use App\Http\Responses\Post\PostUpdateResponse;
@@ -146,11 +144,11 @@ class PostController extends Controller implements HasMiddleware
      */
     private function validatePost(Request $request)
     {
-        return Validator::make($request->only(['title', 'body', 'source_url', 'image_path']), [
+        return $request->validate([
             'title' => 'required|string|max:255',
             'body' => 'required|string',
             'source_url' => 'required|url',
             'image_path' => 'required|image|mimes:jpeg,png,jpg|max:2048',
-        ])->validate();
+        ]);
     }
 }

@@ -30,14 +30,18 @@
 
         @auth
             <div class="flex mt-5 text-sm">
-                <form action="{{ route('faqs.destroy', $faq) }}" method="post">
-                    @csrf
-                    @method('DELETE')
+                {{-- Delete modal --}}
+                <x-forms.modal name="{{ $faq->question }}" route="{{ route('faqs.destroy', $faq->id) }}"
+                    id="{{ $faq->id }}" />
 
-                    <button type="submit" class="text-red-500 mr-2 hover:underline">Delete</button>
-                </form>
+                <button type="button"
+                    class="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium text-red-500 hover:underline focus:outline-none disabled:opacity-50 disabled:pointer-events-none"
+                    aria-haspopup="dialog" aria-expanded="false" aria-controls="hs-scale-animation-modal"
+                    data-hs-overlay="#hs-scale-animation-modal-{{ $faq->id }}">
+                    Delete
+                </button>
 
-                <a href="{{ route('faqs.edit', $faq) }}" class="text-blue-500 hover:underline">Edit Faq</a>
+                <a href="{{ route('faqs.edit', $faq) }}" class="text-blue-500 hover:underline mt-3">Edit Faq</a>
             </div>
         @endauth
     </div>

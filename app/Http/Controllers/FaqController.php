@@ -4,9 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Faq;
 use Illuminate\Http\Request;
-use App\Http\Requests\FaqRequest;
 use App\Services\PageTitleFetcher;
-use Illuminate\Support\Facades\Validator;
 use App\Http\Responses\Faq\FaqCreateResponse;
 use App\Http\Responses\Faq\FaqUpdateResponse;
 use App\Http\Responses\Faq\FaqDestroyResponse;
@@ -129,10 +127,10 @@ class FaqController extends Controller implements HasMiddleware
      */
     private function validateFaq(Request $request)
     {
-        return Validator::make($request->only(['title', 'body', 'source_url', 'image_path']), [
-            'question' => 'required|max:255',
-            'answer' => 'required',
-            'source_url' => 'required|url|max:255',
-        ])->validate();
+        return $request->validate([
+            'question' => 'required|string|max:255',
+            'answer' => 'required|string',
+            'source_url' => 'required|url',
+        ]);
     }
 }
